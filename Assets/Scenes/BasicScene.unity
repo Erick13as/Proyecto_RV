@@ -1531,6 +1531,7 @@ GameObject:
   - component: {fileID: 457372202}
   - component: {fileID: 457372200}
   - component: {fileID: 457372204}
+  - component: {fileID: 457372205}
   m_Layer: 0
   m_Name: Drop Zone Pan
   m_TagString: Untagged
@@ -1547,7 +1548,7 @@ Transform:
   m_GameObject: {fileID: 457372198}
   serializedVersion: 2
   m_LocalRotation: {x: 0.49712843, y: 0.50285524, z: -0.5028551, w: 0.49712834}
-  m_LocalPosition: {x: -0.0238, y: -0.0025968, z: -0.0151}
+  m_LocalPosition: {x: -0.0238, y: 0.005, z: -0.0151}
   m_LocalScale: {x: 6.5006504, y: 1.0001116, z: 29.14695}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1670,6 +1671,29 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.005
   m_Center: {x: -0.000000007445926, y: 0.0000000037589474, z: 0.00008544241}
+--- !u!114 &457372205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457372198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6503bef61f44fb34a8b78819b0b049c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialTimePairs:
+  - material: {fileID: 2100000, guid: 716d594615331fe4c9402590a1e4abfd, type: 2}
+    duration: 5
+  - material: {fileID: 2100000, guid: ee2f737c6873a014db55a9622cc8ae15, type: 2}
+    duration: 5
+  - material: {fileID: 2100000, guid: 26de636aa7b1e454285d873c0aeb03f1, type: 2}
+    duration: 10
+  - material: {fileID: 2100000, guid: 64ee468c31b9af1438284831522a1e1a, type: 2}
+    duration: 5
+  transitionDuration: 1
+  initialDelay: 2
 --- !u!1001 &458544281
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4188,6 +4212,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 5a80337923c830f41830affcddab62b5, type: 3}
       propertyPath: m_Name
       value: tortilla
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5a80337923c830f41830affcddab62b5, type: 3}
+      propertyPath: m_TagString
+      value: Tortilla
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
