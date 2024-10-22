@@ -3,7 +3,42 @@ guid: 8202cd3fee1b51844a0b519658c84b3c
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bready1_Material_001.004
+    second: {fileID: 2100000, guid: f4eb10717defc864e8d61be4379d48d0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bready1_Material_001.005
+    second: {fileID: 2100000, guid: b749797c7794f1c4c825ad41735b9e73, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bready1_Material_001.006
+    second: {fileID: 2100000, guid: 4a72ae38d6516ef449564cb23c461dbc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fridge plastic transp.001
+    second: {fileID: 2100000, guid: 2ae2e2d10eaa99b438af7ecc217cf2d2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: StainlessSteel
+    second: {fileID: 2100000, guid: 55b20000274993a4698ebc8cb8de5273, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pollo
+    second: {fileID: 2100000, guid: 493b9478ba6c9e245906ef8d4d01cf0e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pollo.001
+    second: {fileID: 2100000, guid: 702eed9e9010a9c419e65469252f39a7, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
