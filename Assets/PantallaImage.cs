@@ -7,7 +7,7 @@ public class PantallaManager : MonoBehaviour
     public MeshRenderer pantallaRenderer; // El MeshRenderer de la pantalla
     public Material[] imagenesMateriales; // Array de materiales
     private int currentIndex = 0;
-    
+
     // Cambiar al siguiente material
     public void NextDisplay()
     {
@@ -39,3 +39,18 @@ public class PantallaManager : MonoBehaviour
         PreviousDisplay();
     }
 }
+
+/* para implementar en los scripts:
+
+public class Sarten : MonoBehaviour
+{
+    public PantallaManager pantalla;
+
+    private void EncenderSarten()
+    {
+        // Lógica para encender el sartén
+        pantalla.NextDisplay();
+    }
+}
+
+*/
