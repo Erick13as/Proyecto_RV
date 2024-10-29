@@ -4931,6 +4931,7 @@ GameObject:
   - component: {fileID: 1643751418}
   - component: {fileID: 1643751417}
   - component: {fileID: 1643751422}
+  - component: {fileID: 1643751423}
   m_Layer: 0
   m_Name: Pantalla
   m_TagString: Untagged
@@ -4969,7 +4970,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0233a4663f62ff64a81a5bbd0e6248a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pantallaRenderer: {fileID: 0}
+  pantallaRenderer: {fileID: 1643751419}
   imagenesMateriales:
   - {fileID: 2100000, guid: 5f2dc43aa6286f446ac303a690550fcd, type: 2}
   - {fileID: 2100000, guid: 3295fa72e9eac1f47b5be3ffe543a9f4, type: 2}
@@ -5059,7 +5060,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d7b3f74b4509da94fb75cacc2e44c5be, type: 2}
+  - {fileID: 2100000, guid: 5f2dc43aa6286f446ac303a690550fcd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5102,6 +5103,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pantalla: {fileID: 1643751417}
+--- !u!114 &1643751423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1643751415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4a4679b6294e5c41b545905d4bd1db4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pantallaManager: {fileID: 1643751417}
+  tiempoEntrePasos: 3
 --- !u!1 &1649581761 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -5754060345647867467, guid: 49b3be145e9020f43a910438cf140d39, type: 3}
