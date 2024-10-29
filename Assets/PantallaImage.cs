@@ -1,20 +1,41 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PantallaManager : MonoBehaviour
 {
-    public MeshRenderer pantallaRenderer; // El MeshRenderer de la pantalla
-    public Material[] imagenesMateriales; // Array de materiales
+    public MeshRenderer pantallaRenderer; // MeshRenderer de la pantalla
+    public Material[] imagenesTutorial; // Array de materiales para el tutorial
+    public Material[] imagenesJuego; // Array de materiales para el juego
     private int currentIndex = 0;
+    private bool esTutorial = true; // Determina si estamos en el tutorial o en el juego
 
+    // Cambia entre tutorial y juego
+    public void SetModoJuego()
+    {
+        esTutorial = false;
+        currentIndex = 0; // Reinicia el índice para el juego
+        pantallaRenderer.material = imagenesJuego[currentIndex];
+    }
+
+    // Cambia al siguiente material en el array correspondiente
     public void NextDisplay()
     {
-        if (imagenesMateriales != null && imagenesMateriales.Length > 0)
+        Material[] materialesActuales = esTutorial ? imagenesTutorial : imagenesJuego;
+
+        if (currentIndex < materialesActuales.Length - 1)
         {
-            currentIndex = (currentIndex + 1) % imagenesMateriales.Length; // Avanza al siguiente material
-            pantallaRenderer.material = imagenesMateriales[currentIndex];
-            Debug.Log("Material actualizado a índice: " + currentIndex);
+            currentIndex++;
+            pantallaRenderer.material = materialesActuales[currentIndex];
+        }
+    }
+
+    public void DisplaySpecificImage(int index)
+    {
+        Material[] materialesActuales = esTutorial ? imagenesTutorial : imagenesJuego;
+
+        if (index >= 0 && index < materialesActuales.Length)
+        {
+            currentIndex = index;
+            pantallaRenderer.material = materialesActuales[index];
         }
     }
 }
