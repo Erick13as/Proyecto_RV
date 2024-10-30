@@ -28,19 +28,20 @@ public class QuesadillaTransformer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // Obtener el script de la cuchara
+        // Verificar si el objeto es "Queso" y no ha sido agregado aún
+        if (other.CompareTag("Queso") && !tieneQueso)
+        {
+            AgregarQueso();
+            Destroy(other.gameObject); // Eliminar el objeto de queso tras agregarlo
+        }
+
+        // Obtener el script de la cuchara para otros ingredientes
         CambiarModelo scriptCuchara = other.GetComponent<CambiarModelo>();
 
-        // Si la cuchara tiene el script
         if (scriptCuchara != null)
         {
             // Verificar el tag y si la cuchara tiene el material
-            if (other.CompareTag("Queso") && !tieneQueso && scriptCuchara.TieneMaterial())
-            {
-                AgregarQueso();
-                scriptCuchara.UsarMaterial();
-            }
-            else if (other.CompareTag("CucharaPollo") && !tienePollo && scriptCuchara.TieneMaterial())
+            if (other.CompareTag("CucharaPollo") && !tienePollo && scriptCuchara.TieneMaterial())
             {
                 AgregarPollo();
                 scriptCuchara.UsarMaterial();
