@@ -7,6 +7,13 @@ TagManager:
   - Anchor
   - Tortilla
   - Plato
+  - Pollo
+  - Frijoles
+  - CucharaFrijoles
+  - CucharaPollo
+  - Queso
+  - Quesadilla
+  - Manos
   layers:
   - Default
   - TransparentFX
