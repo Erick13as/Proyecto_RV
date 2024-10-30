@@ -3,7 +3,17 @@ guid: 9e6a80fc4c11f2d469962d2d909d634b
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.003
+    second: {fileID: 2100000, guid: d35f2a903fde71e418620a6bfdc9640e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pollo
+    second: {fileID: 2100000, guid: 493b9478ba6c9e245906ef8d4d01cf0e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -3,7 +3,17 @@ guid: a96c6acfb3ae27440ac31144b7eb8877
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ice cream
+    second: {fileID: 2100000, guid: 699b30a66779a15448ca318559dd5b62, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.003
+    second: {fileID: 2100000, guid: d35f2a903fde71e418620a6bfdc9640e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
