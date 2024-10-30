@@ -9,6 +9,10 @@ TagManager:
   - Plato
   - Pollo
   - Frijoles
+  - CucharaFrijoles
+  - CucharaPollo
+  - Queso
+  - Quesadilla
   layers:
   - Default
   - TransparentFX
