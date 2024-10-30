@@ -1,89 +1,86 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TutorialManager : MonoBehaviour
 {
-    public PantallaManager pantallaManager; // Referencia al PantallaManager
-    private int currentStep = 0; // Paso actual del tutorial
+    public PantallaManager pantallaManager;
+    private int currentStep = 0;
+    private int currentImageIndex = 0;
 
-    // Definir los pasos del tutorial como un enum para mayor claridad
+    // Lista de pasos y el número de imágenes que corresponden a cada paso
+    private int[] imagesPerStep = { 3, 1, 1, 3, 3, 3, 3, 1, 3, 2, 3 };
+    private bool isDisplayingStepImages = false;
+
     public enum TutorialSteps
     {
-        EncenderSarten,
+        AprenderManiobrarObjetos,
+        EquipoCocina,
+        ConocerReceta,
         PonerTortilla,
         PonerFrijoles,
         PonerQueso,
         PonerCarne,
-        PonerMasQueso,
         CerrarQuesadilla,
-        LlevarQuesadillaAlSarten,
+        QuesadillaAlSarten,
         CocinarQuesadilla,
-        VoltearQuesadilla,
         ServirQuesadilla
     }
 
-    // Almacena el estado de cada paso
-    private Dictionary<TutorialSteps, bool> pasosCompletados = new Dictionary<TutorialSteps, bool>();
-
     private void Start()
     {
-        // Inicializar todos los pasos como no completados
-        foreach (TutorialSteps step in System.Enum.GetValues(typeof(TutorialSteps)))
-        {
-            pasosCompletados[step] = false;
-        }
-        
-        // Iniciar el tutorial en el primer paso
-        IniciarPaso(TutorialSteps.EncenderSarten);
+        IniciarPaso((TutorialSteps)currentStep);
     }
 
-    // Método para iniciar cada paso y actualizar la pantalla
+    // Método para iniciar cada paso y comenzar la secuencia de imágenes correspondientes
     public void IniciarPaso(TutorialSteps paso)
     {
         currentStep = (int)paso;
-        pantallaManager.NextDisplay(); // Cambia la imagen de la pantalla al paso actual
+        currentImageIndex = 0;
         Debug.Log("Iniciando paso: " + paso);
+        StartCoroutine(DisplayStepImages());
     }
 
-    // Método para marcar el paso como completado
-    public void CompletarPaso(TutorialSteps paso)
+    // Corutina para mostrar todas las imágenes de un paso en secuencia
+    private IEnumerator DisplayStepImages()
     {
-        if (paso == (TutorialSteps)currentStep && !pasosCompletados[paso])
+        isDisplayingStepImages = true;
+        int totalImages = imagesPerStep[currentStep];
+
+        while (currentImageIndex < totalImages)
         {
-            pasosCompletados[paso] = true;
-            AvanzarSiguientePaso();
+            pantallaManager.DisplaySpecificImage(currentImageIndex + GetStartingIndexForStep(currentStep));
+            Debug.Log("Mostrando imagen: " + currentImageIndex + " del paso " + currentStep);
+            currentImageIndex++;
+            yield return new WaitForSeconds(2f); // Tiempo entre imágenes
         }
+
+        isDisplayingStepImages = false;
+        CompletarPasoActual();
     }
 
-    // Método para avanzar al siguiente paso
-    private void AvanzarSiguientePaso()
+    // Método para avanzar al siguiente paso una vez que todas las imágenes del paso actual han sido mostradas
+    public void CompletarPasoActual()
     {
-        if (currentStep < System.Enum.GetValues(typeof(TutorialSteps)).Length - 1)
+        if (!isDisplayingStepImages && currentStep < System.Enum.GetValues(typeof(TutorialSteps)).Length - 1)
         {
             currentStep++;
-            IniciarPaso((TutorialSteps)currentStep); // Cambiar al siguiente paso
+            IniciarPaso((TutorialSteps)currentStep); 
         }
         else
         {
             Debug.Log("Tutorial completo.");
+            // Aquí podrías añadir lógica para empezar el juego después del tutorial
         }
     }
-}
 
-/*
-
-Integración con Otros Scripts
-
-public class Sarten : MonoBehaviour
-{
-    public TutorialManager tutorialManager; // Referencia al TutorialManager
-
-    private void Encender()
+    // Calcula el índice inicial de las imágenes en el array en función del paso
+    private int GetStartingIndexForStep(int step)
     {
-        // Lógica para encender el sartén
-        tutorialManager.CompletarPaso(TutorialManager.TutorialSteps.EncenderSarten); // Marca el paso como completado
+        int startingIndex = 0;
+        for (int i = 0; i < step; i++)
+        {
+            startingIndex += imagesPerStep[i];
+        }
+        return startingIndex;
     }
 }
-
-*/
