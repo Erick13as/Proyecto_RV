@@ -48,22 +48,28 @@ public class QuesadillaTransformer2 : MonoBehaviour
     private InputAction buttonXAction;
     private InputAction buttonYAction;
 
+    // Materiales originales de los objetos con el tag Tortilla
+    private Dictionary<GameObject, Material[]> materialesOriginalesTortilla = new Dictionary<GameObject, Material[]>();
+
     private void Awake()
     {
         // Crear las acciones de input
         var actionMap = new InputActionMap("XRI RightHand");
-        
+
         buttonAAction = actionMap.AddAction("A Button", InputActionType.Button);
         buttonAAction.AddBinding("<XRController>{RightHand}/primaryButton");
-        
+
         buttonBAction = actionMap.AddAction("B Button", InputActionType.Button);
         buttonBAction.AddBinding("<XRController>{RightHand}/secondaryButton");
-        
+
         buttonXAction = actionMap.AddAction("X Button", InputActionType.Button);
         buttonXAction.AddBinding("<XRController>{LeftHand}/primaryButton");
-        
+
         buttonYAction = actionMap.AddAction("Y Button", InputActionType.Button);
         buttonYAction.AddBinding("<XRController>{LeftHand}/secondaryButton");
+
+        // Guardar los materiales originales solo para los objetos con el tag Tortilla
+        GuardarMaterialesTortilla();
     }
 
     private void OnEnable()
@@ -99,11 +105,11 @@ public class QuesadillaTransformer2 : MonoBehaviour
         // Inicializar componentes
         grabInteractable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
         rb = GetComponent<Rigidbody>();
-        
+
         // Guardar posición inicial
         posicionOriginal = transform.position;
         rotacionOriginal = transform.rotation;
-        
+
         // Quesadilla base
         DesactivarTodosLosModelos();
         if (quesadillaBase != null) quesadillaBase.SetActive(true);
@@ -182,6 +188,9 @@ public class QuesadillaTransformer2 : MonoBehaviour
         estaDoblada = false;
         estaEnPlato = false;
 
+        // Restaurar materiales originales de los objetos con el tag Tortilla
+        RestaurarMaterialesTortilla();
+
         // Actualizar modelo a estado original
         ActualizarModelo();
     }
@@ -207,13 +216,6 @@ public class QuesadillaTransformer2 : MonoBehaviour
     private void ActualizarModelo()
     {
         DesactivarTodosLosModelos();
-
-        // Imprimir en el log los datos actuales para elegir el modelo
-        Debug.Log("Actualizar Modelo - Datos:");
-        Debug.Log("tieneQueso: " + tieneQueso);
-        Debug.Log("tienePollo: " + tienePollo);
-        Debug.Log("tieneFrijoles: " + tieneFrijoles);
-        Debug.Log("estaDoblada: " + estaDoblada);
 
         // Seleccionar el modelo correspondiente según ingredientes y estado doblado
         GameObject modeloAActivar = null;
@@ -251,29 +253,69 @@ public class QuesadillaTransformer2 : MonoBehaviour
             modeloAActivar = estaDoblada ? tortillaDoblada : quesadillaBase;
         }
 
-        if (modeloAActivar != null) modeloAActivar.SetActive(true);
+        // Activar el modelo seleccionado
+        if (modeloAActivar != null)
+        {
+            modeloAActivar.SetActive(true);
+        }
     }
 
     private void DesactivarTodosLosModelos()
     {
-        // Desactivar modelos normales
-        if (quesadillaBase != null) quesadillaBase.SetActive(false);
-        if (quesadillaQueso != null) quesadillaQueso.SetActive(false);
-        if (quesadillaPollo != null) quesadillaPollo.SetActive(false);
-        if (quesadillaFrijoles != null) quesadillaFrijoles.SetActive(false);
-        if (quesadillaPolloQueso != null) quesadillaPolloQueso.SetActive(false);
-        if (quesadillaFrijolesQueso != null) quesadillaFrijolesQueso.SetActive(false);
-        if (quesadillaPolloFrijoles != null) quesadillaPolloFrijoles.SetActive(false);
-        if (quesadillaCompleta != null) quesadillaCompleta.SetActive(false);
+        // Desactivar todas las posibles combinaciones de quesadilla
+        quesadillaBase.SetActive(false);
+        quesadillaQueso.SetActive(false);
+        quesadillaPollo.SetActive(false);
+        quesadillaFrijoles.SetActive(false);
+        quesadillaPolloQueso.SetActive(false);
+        quesadillaFrijolesQueso.SetActive(false);
+        quesadillaPolloFrijoles.SetActive(false);
+        quesadillaCompleta.SetActive(false);
 
-        // Desactivar modelos doblados
-        if (tortillaDoblada != null) tortillaDoblada.SetActive(false);
-        if (quesadillaQuesoDoblada != null) quesadillaQuesoDoblada.SetActive(false);
-        if (quesadillaPolloDoblada != null) quesadillaPolloDoblada.SetActive(false);
-        if (quesadillaFrijolesDoblada != null) quesadillaFrijolesDoblada.SetActive(false);
-        if (quesadillaPolloQuesoDoblada != null) quesadillaPolloQuesoDoblada.SetActive(false);
-        if (quesadillaFrijolesQuesoDoblada != null) quesadillaFrijolesQuesoDoblada.SetActive(false);
-        if (quesadillaPolloFrijolesDoblada != null) quesadillaPolloFrijolesDoblada.SetActive(false);
-        if (quesadillaCompletaDoblada != null) quesadillaCompletaDoblada.SetActive(false);
+        // Desactivar todos los modelos doblados
+        tortillaDoblada.SetActive(false);
+        quesadillaQuesoDoblada.SetActive(false);
+        quesadillaPolloDoblada.SetActive(false);
+        quesadillaFrijolesDoblada.SetActive(false);
+        quesadillaPolloQuesoDoblada.SetActive(false);
+        quesadillaFrijolesQuesoDoblada.SetActive(false);
+        quesadillaPolloFrijolesDoblada.SetActive(false);
+        quesadillaCompletaDoblada.SetActive(false);
+    }
+
+    private void GuardarMaterialesTortilla()
+    {
+        // Recorrer todos los hijos y el objeto padre para guardar materiales de los que tienen el tag Tortilla
+        foreach (Transform child in GetComponentsInChildren<Transform>(true))
+        {
+            if (child.CompareTag("Tortilla"))
+            {
+                GuardarMateriales(child.gameObject);
+            }
+        }
+
+        if (CompareTag("Tortilla"))
+        {
+            GuardarMateriales(gameObject);
+        }
+    }
+
+    private void GuardarMateriales(GameObject modelo)
+    {
+        if (modelo != null)
+        {
+            Material[] materiales = modelo.GetComponent<Renderer>().materials;
+            materialesOriginalesTortilla[modelo] = materiales;
+        }
+    }
+
+    private void RestaurarMaterialesTortilla()
+    {
+        foreach (var kvp in materialesOriginalesTortilla)
+        {
+            GameObject modelo = kvp.Key;
+            Material[] materialesOriginales = kvp.Value;
+            modelo.GetComponent<Renderer>().materials = materialesOriginales;
+        }
     }
 }
