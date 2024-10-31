@@ -310,9 +310,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c31c5852cc3e41345ae466b827446d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalPosition: {x: 0, y: 0, z: 0}
-  isCollidingWithQuesadilla: 0
-  quesadillaMonitor: {fileID: 1034697576}
 --- !u!114 &3445571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2108,12 +2105,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5d09039a0621c0448ab4097626c2027, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pantallaManager: {fileID: 0}
-  quesadillaMonitor: {fileID: 1034697576}
-  currentStep: 0
-  currentImageIndex: 0
-  imagesPerStep: 0300000001000000010000000300000003000000030000000300000001000000030000000200000003000000
-  isDisplayingStepImages: 0
 --- !u!1001 &372795116
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2497,9 +2488,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c31c5852cc3e41345ae466b827446d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalPosition: {x: 0, y: 0, z: 0}
-  isCollidingWithQuesadilla: 0
-  quesadillaMonitor: {fileID: 1034697576}
 --- !u!114 &416829968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3753,18 +3741,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41f37dc749ee91d428fedb0368492229, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pantallaManager: {fileID: 0}
-  tiposQuesadilla:
-  - quesadilla_completa
-  - quesadilla_frijoles_queso
-  - quesadilla_frijoles
-  - quesadilla_pollo_frijoles
-  - quesadilla_pollo_queso
-  - quesadilla_pollo
-  - quesadilla_queso
-  pedidoActual: []
-  pedidoCompleto: 0
-  juegoEnCurso: 0
 --- !u!4 &541109641
 Transform:
   m_ObjectHideFlags: 0
@@ -4338,12 +4314,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca2100c463979ea45978080cb432b7a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modeloInicial: {fileID: 1487162555}
-  modeloConMaterial: {fileID: 457142930}
-  tagParaRecoger: Pollo
-  tagParaSoltar: Quesadilla
-  tieneMaterial: 0
-  quesadillaMonitor: {fileID: 1034697576}
 --- !u!114 &619462488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4911,9 +4881,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c31c5852cc3e41345ae466b827446d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalPosition: {x: 0, y: 0, z: 0}
-  isCollidingWithQuesadilla: 0
-  quesadillaMonitor: {fileID: 1034697576}
 --- !u!114 &704970127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6020,15 +5987,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f6a2e4725b965f4abbd2765c29aa485, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 541109640}
-  tutorialManager: {fileID: 370536374}
-  esTutorial: 1
-  tortillaAgregada: 0
-  frijolAgregado: 0
-  quesoAgregado: 0
-  carneAgregada: 0
-  quesadillaCerrada: 0
-  quesadillaCocinada: 0
 --- !u!4 &1034697577
 Transform:
   m_ObjectHideFlags: 0
@@ -7055,9 +7013,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c31c5852cc3e41345ae466b827446d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalPosition: {x: 0, y: 0, z: 0}
-  isCollidingWithQuesadilla: 0
-  quesadillaMonitor: {fileID: 1034697576}
 --- !u!114 &1153277299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7875,12 +7830,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca2100c463979ea45978080cb432b7a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modeloInicial: {fileID: 1762647346}
-  modeloConMaterial: {fileID: 175143287}
-  tagParaRecoger: Frijoles
-  tagParaSoltar: Quesadilla
-  tieneMaterial: 0
-  quesadillaMonitor: {fileID: 1034697576}
 --- !u!65 &1303384732
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8818,7 +8767,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1407642173}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
   m_Name: 
@@ -9535,6 +9484,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   instruccionInicial:
+    material: {fileID: 2100000, guid: 5f2dc43aa6286f446ac303a690550fcd, type: 2}
+    descripcion: 
+  instruccionInstrumentos:
     material: {fileID: 2100000, guid: f5b9b73793512404d9f1d65625bc8127, type: 2}
     descripcion: 
   instruccionAgregarFrijoles:
@@ -9554,6 +9506,9 @@ MonoBehaviour:
     descripcion: 
   quesadillaCompleta:
     material: {fileID: 2100000, guid: 3a2c468ab3d1dc04ea930df690c81758, type: 2}
+    descripcion: 
+  instruccionFinal:
+    material: {fileID: 0}
     descripcion: 
   quesadillaTransformer: {fileID: 1063493732}
 --- !u!65 &1499642610

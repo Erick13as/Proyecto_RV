@@ -1,9 +1,8 @@
 using UnityEngine;
-using System.Collections.Generic;
+using System.Collections;
 
 public class PantallaInstrucciones : MonoBehaviour
 {
-    // Renderer de la pantalla
     private MeshRenderer pantallaRenderer;
 
     [System.Serializable]
@@ -13,19 +12,20 @@ public class PantallaInstrucciones : MonoBehaviour
         public string descripcion;
     }
 
-    // Materiales para diferentes estados/instrucciones
     public InstruccionMaterial instruccionInicial;
+    public InstruccionMaterial instruccionInstrumentos;
     public InstruccionMaterial instruccionAgregarFrijoles;
     public InstruccionMaterial instruccionAgregarQueso;
     public InstruccionMaterial instruccionAgregarPollo;
     public InstruccionMaterial instruccionDoblar;
     public InstruccionMaterial instruccionColocarEnPlato;
     public InstruccionMaterial quesadillaCompleta;
+    public InstruccionMaterial instruccionFinal; // Nueva instrucción final
 
-    // Referencias a los objetos que necesitamos monitorear
     public QuesadillaTransformer2 quesadillaTransformer;
     private bool mostrandoInstruccionDoblar = false;
     private bool instruccionPlatoMostrada = false;
+    private bool mostrarSiguienteInstruccion = false;
 
     private void Start()
     {
@@ -36,15 +36,22 @@ public class PantallaInstrucciones : MonoBehaviour
             return;
         }
 
-        // Mostrar instrucción inicial
+        StartCoroutine(MostrarInstruccionInicial());
+    }
+
+    private IEnumerator MostrarInstruccionInicial()
+    {
         MostrarInstruccion(instruccionInicial.material);
+        yield return new WaitForSeconds(5f);
+        MostrarInstruccion(instruccionInstrumentos.material);
+        yield return new WaitForSeconds(10f);
+        mostrarSiguienteInstruccion = true;
     }
 
     private void Update()
     {
-        if (quesadillaTransformer == null) return;
+        if (!mostrarSiguienteInstruccion || quesadillaTransformer == null) return;
 
-        // Verificar el estado actual de la quesadilla usando los GameObjects activos
         bool tieneFrijoles = EstaActivoCualquierModelo(new GameObject[] {
             quesadillaTransformer.quesadillaFrijoles,
             quesadillaTransformer.quesadillaFrijolesQueso,
@@ -89,7 +96,6 @@ public class PantallaInstrucciones : MonoBehaviour
             quesadillaTransformer.quesadillaCompletaDoblada
         });
 
-        // Lógica para mostrar las instrucciones en el nuevo orden
         if (!tieneFrijoles && !tieneQueso && !tienePollo && !estaDoblada)
         {
             MostrarInstruccion(instruccionAgregarFrijoles.material);
@@ -117,6 +123,12 @@ public class PantallaInstrucciones : MonoBehaviour
         else if (tieneFrijoles && tieneQueso && tienePollo && estaDoblada && instruccionPlatoMostrada)
         {
             MostrarInstruccion(quesadillaCompleta.material);
+            instruccionPlatoMostrada = true;
+        }
+        else if (instruccionPlatoMostrada) // Lógica para mostrar la instrucción final
+        {
+            MostrarInstruccion(instruccionFinal.material);
+            mostrarSiguienteInstruccion = false; // Detener el Update
         }
     }
 
@@ -140,11 +152,13 @@ public class PantallaInstrucciones : MonoBehaviour
         }
     }
 
-    // Método público para reiniciar el estado de la pantalla
     public void ReiniciarPantalla()
     {
         mostrandoInstruccionDoblar = false;
         instruccionPlatoMostrada = false;
-        MostrarInstruccion(instruccionInicial.material);
+        mostrarSiguienteInstruccion = false;
+        StartCoroutine(MostrarInstruccionInicial());
     }
 }
+
+
