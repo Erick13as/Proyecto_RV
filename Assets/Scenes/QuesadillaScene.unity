@@ -2159,7 +2159,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9508,7 +9508,7 @@ MonoBehaviour:
     material: {fileID: 2100000, guid: 3a2c468ab3d1dc04ea930df690c81758, type: 2}
     descripcion: 
   instruccionFinal:
-    material: {fileID: 0}
+    material: {fileID: 2100000, guid: cda598f786148da458dc8dfb3a1af1ae, type: 2}
     descripcion: 
   quesadillaTransformer: {fileID: 1063493732}
 --- !u!65 &1499642610
