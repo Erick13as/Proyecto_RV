@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TutorialManager : MonoBehaviour
@@ -28,6 +29,7 @@ public class TutorialManager : MonoBehaviour
 
     private void Start()
     {
+        pantallaManager.IniciarTutorial(); // Mostrar portada y prepararse para el tutorial
         IniciarPaso((TutorialSteps)currentStep);
     }
 
@@ -63,13 +65,14 @@ public class TutorialManager : MonoBehaviour
         }
         else
         {
-            TerminarTutorial(); // Llama para finalizar el tutorial y cambiar al modo de juego
+            TerminarTutorial();
         }
     }
 
     private void TerminarTutorial()
     {
-        quesadillaMonitor.esTutorial = false; // Cambia al modo de juego en QuesadillaMonitor
+        quesadillaMonitor.esTutorial = false;
+        FindObjectOfType<GameManager>().IniciarJuego(); // Cambia a modo de juego
         Debug.Log("Tutorial completo. Cambiando a modo de juego.");
     }
 

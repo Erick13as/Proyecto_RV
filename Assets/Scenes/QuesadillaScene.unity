@@ -3956,11 +3956,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pantallaManager: {fileID: 831417573}
   tiposQuesadilla:
-  - quesadilla_frijoles
+  - quesadilla_completa
   - quesadilla_frijoles_queso
-  - quesadilla_pollo
+  - quesadilla_frijoles
   - quesadilla_pollo_frijoles
   - quesadilla_pollo_queso
+  - quesadilla_pollo
   - quesadilla_queso
 --- !u!4 &541109641
 Transform:

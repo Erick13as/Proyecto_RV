@@ -8,16 +8,18 @@ public class GameManager : MonoBehaviour
     public string[] tiposQuesadilla = { "quesadilla_completa", "quesadilla_frijoles_queso", "quesadilla_frijoles", "quesadilla_pollo_frijoles", "quesadilla_pollo_queso", "quesadilla_pollo", "quesadilla_queso" };
     private List<string> pedidoActual = new List<string>();
     private int pedidoCompleto = 0;
-    private bool juegoEnCurso = true;
+    private bool juegoEnCurso = false;
 
     private void Start()
     {
-        IniciarJuego();
+        // Empezamos solo el tutorial, el juego se iniciará desde el TutorialManager cuando termine
+        FindObjectOfType<TutorialManager>().IniciarPaso(TutorialManager.TutorialSteps.AprenderManiobrarObjetos);
     }
 
     public void IniciarJuego()
     {
         pantallaManager.SetModoJuego();
+        juegoEnCurso = true;
         MostrarMensaje("Empieza el juego", 2f, GenerarPedido);
     }
 
@@ -55,8 +57,6 @@ public class GameManager : MonoBehaviour
         if (pedidoCompleto < pedidoActual.Count)
         {
             Debug.Log("Quesadilla completada: " + pedidoActual[pedidoCompleto]);
-
-            // Mostrar la imagen correspondiente a la quesadilla actual en PantallaManager
             pantallaManager.MostrarTipoQuesadilla(pedidoActual[pedidoCompleto]);
             pedidoCompleto++;
 

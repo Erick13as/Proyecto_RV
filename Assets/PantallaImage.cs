@@ -5,15 +5,14 @@ using UnityEngine;
 public class PantallaManager : MonoBehaviour
 {
     public MeshRenderer pantallaRenderer;
-    public Material[] imagenesTutorial;
+    public Material[] imagenesTutorial;  // La portada será el primer elemento
     public Material[] imagenesJuego;
 
+    private int currentIndex = 0;
     private bool esTutorial = true;
 
-    // Inicializar el diccionario con índices para cada tipo de quesadilla
     private Dictionary<string, int> imagenesQuesadillas = new Dictionary<string, int>
     {
-        // el indice 0 es para el Material "Base" - "Ha llegodo un cliente..."
         { "quesadilla_completa", 1 },
         { "quesadilla_frijoles_queso", 2 },
         { "quesadilla_frijoles", 3 },
@@ -23,9 +22,16 @@ public class PantallaManager : MonoBehaviour
         { "quesadilla_queso", 7 }
     };
 
+    public void IniciarTutorial()
+    {
+        esTutorial = true;
+        DisplaySpecificImage(0); // Muestra la portada
+    }
+
     public void SetModoJuego()
     {
         esTutorial = false;
+        currentIndex = 0;
     }
 
     public void DisplaySpecificImage(int index)
@@ -42,7 +48,6 @@ public class PantallaManager : MonoBehaviour
         }
     }
 
-    // Muestra la imagen correspondiente al tipo de quesadilla actual
     public void MostrarTipoQuesadilla(string tipoQuesadilla)
     {
         if (imagenesQuesadillas.TryGetValue(tipoQuesadilla, out int index))
