@@ -2,85 +2,117 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Este script controla el flujo principal del juego después del tutorial, gestionando los pedidos de quesadillas y validando su completitud.
-
 public class GameManager : MonoBehaviour
 {
     public PantallaManager pantallaManager;
+    public QuesadillaMonitor quesadillaMonitor;
+
     public string[] tiposQuesadilla = { "quesadilla_frijoles", "quesadilla_frijoles_queso", "quesadilla_pollo", "quesadilla_pollo_frijoles", "quesadilla_pollo_queso", "quesadilla_queso" };
-    private List<string> pedidoActual = new List<string>();
-    private int pedidoCompleto = 0;
+    private List<string> pedidoQuesadillas = new List<string>(); 
+    private int quesadillaActual = 0; 
+    private bool juegoEnCurso = true;
 
     private void Start()
     {
-        IniciarJuego();
+        IniciarPedido();
     }
 
-    public void IniciarJuego()
+    // Inicia un nuevo pedido de 3 quesadillas aleatorias
+    private void IniciarPedido()
     {
-        pantallaManager.SetModoJuego();
-        MostrarMensaje("Empieza el juego", 2f, GenerarPedido);
+        pedidoQuesadillas.Clear();
+        juegoEnCurso = true;
+        SeleccionarQuesadillasAleatorias();
+        quesadillaActual = 0;
+        pantallaManager.DisplaySpecificImage(0); // Imagen: "Ha llegado un cliente con un pedido de 3 quesadillas"
+        Debug.Log("Pedido iniciado: Cliente ha solicitado 3 quesadillas.");
+        StartCoroutine(EsperarYEmpezarSiguienteQuesadilla());
     }
 
-    private void GenerarPedido()
+    // Selecciona 3 tipos de quesadillas aleatorias del conjunto disponible
+    private void SeleccionarQuesadillasAleatorias()
     {
-        pedidoActual.Clear();
         List<int> indicesUsados = new List<int>();
 
-        while (pedidoActual.Count < 3)
+        while (pedidoQuesadillas.Count < 3)
         {
             int index = Random.Range(0, tiposQuesadilla.Length);
             if (!indicesUsados.Contains(index))
             {
-                pedidoActual.Add(tiposQuesadilla[index]);
+                pedidoQuesadillas.Add(tiposQuesadilla[index]);
                 indicesUsados.Add(index);
             }
         }
-
-        MostrarMensaje("Llegó un cliente", 2f, MostrarPedido);
     }
 
-    private void MostrarPedido()
+    // Controla el inicio de cada quesadilla del pedido
+    private IEnumerator EsperarYEmpezarSiguienteQuesadilla()
     {
-        foreach (var quesadilla in pedidoActual)
-        {
-            Debug.Log("Quesadilla a preparar: " + quesadilla);
-        }
+        yield return new WaitForSeconds(2f);
+        IniciarQuesadilla();
     }
 
+    // Inicia la preparación de la quesadilla actual
+    private void IniciarQuesadilla()
+    {
+        string tipoQuesadilla = pedidoQuesadillas[quesadillaActual];
+        pantallaManager.DisplaySpecificImage(1); // Imagen: "Prepara la quesadilla X"
+        Debug.Log("Inicia preparación de la quesadilla: " + tipoQuesadilla);
+        pantallaManager.MostrarTipoQuesadilla(tipoQuesadilla);
+        quesadillaMonitor.IniciarNuevaQuesadilla();
+    }
+
+    // Llamado desde `QuesadillaMonitor` al completar una quesadilla
     public void CompletarQuesadilla()
     {
-        if (pedidoCompleto < pedidoActual.Count)
+        if (!juegoEnCurso) return;
+
+        Debug.Log("Quesadilla completada correctamente.");
+        pantallaManager.DisplaySpecificImage(3); // Imagen: "La quesadilla está lista! Excelente, pasa a la siguiente."
+        quesadillaActual++;
+
+        if (quesadillaActual >= pedidoQuesadillas.Count)
         {
-            Debug.Log("Quesadilla completada: " + pedidoActual[pedidoCompleto]);
-            pedidoCompleto++;
-            
-            if (pedidoCompleto < pedidoActual.Count)
-            {
-                MostrarPedido();
-            }
-            else
-            {
-                MostrarMensaje("Pedido completado", 2f, FinalizarJuego);
-            }
+            FinalizarJuego(true); // Si completó las 3 quesadillas, el usuario gana el juego
+        }
+        else
+        {
+            StartCoroutine(EsperarYEmpezarSiguienteQuesadilla());
         }
     }
 
-    private void FinalizarJuego()
+    // Llamado desde `QuesadillaMonitor` si la quesadilla se quema
+    public void QuesadillaQuemada()
     {
-        Debug.Log("¡Juego completado!");
-        pantallaManager.DisplaySpecificImage(1); // Imagen de "Termina el juego"
+        if (!juegoEnCurso) return;
+
+        Debug.Log("La quesadilla se ha quemado. Fin del juego.");
+        pantallaManager.DisplaySpecificImage(4); // Imagen: "No lograste cocinar la quesadilla correctamente. Inténtalo de nuevo"
+        FinalizarJuego(false); // Finaliza el juego con pérdida
     }
 
-    private void MostrarMensaje(string mensaje, float duracion, System.Action callback)
+    // Finaliza el juego, ya sea con éxito o con pérdida, y prepara el reinicio
+    private void FinalizarJuego(bool exito)
     {
-        Debug.Log(mensaje);
-        StartCoroutine(EsperarYEjecutar(duracion, callback));
+        juegoEnCurso = false;
+        if (exito)
+        {
+            pantallaManager.DisplaySpecificImage(5); // Imagen: "Has ganado"
+            Debug.Log("¡Felicidades! Pedido completado.");
+        }
+        else
+        {
+            pantallaManager.DisplaySpecificImage(6); // Imagen: "Has perdido"
+            Debug.Log("Perdiste. La quesadilla se quemó. Empezando de nuevo...");
+        }
+
+        StartCoroutine(ReiniciarJuego()); // Reinicia el juego después de un breve periodo
     }
 
-    private IEnumerator EsperarYEjecutar(float duracion, System.Action callback)
+    // Reinicia el pedido y el juego después de un breve retraso
+    private IEnumerator ReiniciarJuego()
     {
-        yield return new WaitForSeconds(duracion);
-        callback?.Invoke();
+        yield return new WaitForSeconds(3f);
+        IniciarPedido();
     }
 }

@@ -306,7 +306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pantallaManager: {fileID: 1643751417}
-  quesadillaMonitor: {fileID: 1667037713}
+  quesadillaMonitor: {fileID: 0}
 --- !u!4 &28051851
 Transform:
   m_ObjectHideFlags: 0
@@ -7812,7 +7812,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pantallaRenderer: {fileID: 1643751419}
-  imagenesTutorial: []
+  imagenesTutorial:
+  - {fileID: 0}
   imagenesJuego: []
 --- !u!65 &1643751418
 BoxCollider:
@@ -10950,6 +10951,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pantallaManager: {fileID: 1643751417}
+  quesadillaMonitor: {fileID: 0}
   tiposQuesadilla:
   - quesadilla_frijoles
   - quesadilla_frijoles_queso

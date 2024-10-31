@@ -6,6 +6,7 @@ public class QuesoCollisionHandler : MonoBehaviour
 {
     private Vector3 originalPosition;
     private bool isCollidingWithQuesadilla = false;
+    public QuesadillaMonitor quesadillaMonitor; // Referencia al QuesadillaMonitor
 
     void Start()
     {
@@ -29,6 +30,10 @@ public class QuesoCollisionHandler : MonoBehaviour
         if (other.CompareTag("Quesadilla"))
         {
             isCollidingWithQuesadilla = true;
+            
+            // Notifica al QuesadillaMonitor que el queso ha sido agregado
+            quesadillaMonitor.AgregarQueso();
+            Debug.Log("Queso agregado a la quesadilla.");
         }
     }
 

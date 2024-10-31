@@ -1,6 +1,6 @@
 using System.Collections;
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class PanMaterialChanger : MonoBehaviour
 {
@@ -19,9 +19,10 @@ public class PanMaterialChanger : MonoBehaviour
     private Dictionary<GameObject, int> objectMaterialIndex = new Dictionary<GameObject, int>();
     private Dictionary<GameObject, Renderer> targetRenderers = new Dictionary<GameObject, Renderer>();
 
+    public QuesadillaMonitor quesadillaMonitor; // Referencia a QuesadillaMonitor
+
     private void OnTriggerEnter(Collider other)
     {
-        // Buscar todos los objetos con tag Tortilla en la jerarquía
         Transform[] allChildren = other.GetComponentsInChildren<Transform>(true);
         bool foundTortilla = false;
 
@@ -32,19 +33,21 @@ public class PanMaterialChanger : MonoBehaviour
                 Renderer renderer = child.GetComponent<Renderer>();
                 if (renderer != null)
                 {
-                    // Usar el objeto principal como key para el tracking
                     if (!objectTimers.ContainsKey(other.gameObject))
                     {
                         objectTimers.Add(other.gameObject, -initialDelay);
                         objectMaterialIndex.Add(other.gameObject, -1);
                         targetRenderers.Add(other.gameObject, renderer);
                         foundTortilla = true;
+                        
+                        // Notificar al QuesadillaMonitor que la tortilla ha sido colocada en el sartén
+                        quesadillaMonitor.AgregarTortilla();
+                        Debug.Log("Tortilla colocada en el sartén.");
                     }
                 }
             }
         }
 
-        // Si no encontramos en los hijos, verificar el objeto principal
         if (!foundTortilla && other.CompareTag(TORTILLA_TAG))
         {
             Renderer renderer = other.GetComponent<Renderer>();
@@ -53,6 +56,10 @@ public class PanMaterialChanger : MonoBehaviour
                 objectTimers.Add(other.gameObject, -initialDelay);
                 objectMaterialIndex.Add(other.gameObject, -1);
                 targetRenderers.Add(other.gameObject, renderer);
+
+                // Notificar al QuesadillaMonitor que la tortilla ha sido colocada en el sartén
+                quesadillaMonitor.AgregarTortilla();
+                Debug.Log("Tortilla colocada en el sartén.");
             }
         }
     }
@@ -95,12 +102,18 @@ public class PanMaterialChanger : MonoBehaviour
                         objectMaterialIndex[obj] = currentIndex;
                         objectTimers[obj] = 0;
 
-                        // Usar el renderer guardado
                         if (targetRenderers.ContainsKey(obj) && targetRenderers[obj] != null && 
                             currentIndex < materialTimePairs.Count && 
                             materialTimePairs[currentIndex].material != null)
                         {
                             targetRenderers[obj].material = materialTimePairs[currentIndex].material;
+
+                            // Notificar al QuesadillaMonitor que la tortilla ha avanzado en la cocción
+                            if (currentIndex == materialTimePairs.Count - 1)
+                            {
+                                quesadillaMonitor.CocinarQuesadilla();
+                                Debug.Log("La quesadilla ha sido cocinada completamente.");
+                            }
                         }
                     }
                 }
@@ -110,7 +123,6 @@ public class PanMaterialChanger : MonoBehaviour
 
     private void OnDisable()
     {
-        // Limpiar las colecciones cuando se desactiva el componente
         objectTimers.Clear();
         objectMaterialIndex.Clear();
         targetRenderers.Clear();
