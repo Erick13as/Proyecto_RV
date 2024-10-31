@@ -32,8 +32,15 @@ public class QuesadillaTransformer2 : MonoBehaviour
     private bool tieneFrijoles = false;
     private bool estaDoblada = false;
 
+    // Variables para el manejo de la posición
+    private Vector3 posicionOriginal;
+    private Quaternion rotacionOriginal;
+    private bool estaEnPlato = false;
+    private Coroutine restaurarPosicionCoroutine;
+
     // Componente para detectar si está siendo agarrada
     private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grabInteractable;
+    private Rigidbody rb;
 
     // Referencias a los botones del control
     private InputAction buttonAAction;
@@ -91,6 +98,11 @@ public class QuesadillaTransformer2 : MonoBehaviour
     {
         // Inicializar componentes
         grabInteractable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
+        rb = GetComponent<Rigidbody>();
+        
+        // Guardar posición inicial
+        posicionOriginal = transform.position;
+        rotacionOriginal = transform.rotation;
         
         // Quesadilla base
         DesactivarTodosLosModelos();
@@ -113,6 +125,17 @@ public class QuesadillaTransformer2 : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // Verificar si el objeto es un plato
+        if (other.CompareTag("Plato") && !estaEnPlato && !grabInteractable.isSelected)
+        {
+            estaEnPlato = true;
+            if (restaurarPosicionCoroutine != null)
+            {
+                StopCoroutine(restaurarPosicionCoroutine);
+            }
+            restaurarPosicionCoroutine = StartCoroutine(RestaurarPosicionDespuesDeTiempo());
+        }
+
         // Verificar si el objeto es "Queso" y no ha sido agregado aún
         if (other.CompareTag("Queso") && !tieneQueso)
         {
@@ -136,6 +159,31 @@ public class QuesadillaTransformer2 : MonoBehaviour
                 scriptCuchara.UsarMaterial();
             }
         }
+    }
+
+    private IEnumerator RestaurarPosicionDespuesDeTiempo()
+    {
+        // Desactivar física
+        rb.isKinematic = true;
+
+        yield return new WaitForSeconds(3f);
+
+        // Restaurar posición y rotación originales
+        transform.position = posicionOriginal;
+        transform.rotation = rotacionOriginal;
+
+        // Reactivar física
+        rb.isKinematic = false;
+
+        // Restaurar estado original
+        tieneQueso = false;
+        tienePollo = false;
+        tieneFrijoles = false;
+        estaDoblada = false;
+        estaEnPlato = false;
+
+        // Actualizar modelo a estado original
+        ActualizarModelo();
     }
 
     private void AgregarQueso()
