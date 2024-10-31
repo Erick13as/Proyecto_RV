@@ -5875,7 +5875,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pantallaRenderer: {fileID: 831417574}
   imagenesTutorial:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: f5b9b73793512404d9f1d65625bc8127, type: 2}
+  - {fileID: 2100000, guid: b5ef334aafee00b45bd0aab2219dc353, type: 2}
+  - {fileID: 2100000, guid: 03ac11447deff214084468925e67f5e0, type: 2}
+  - {fileID: 2100000, guid: e3574f5f9972a394ba668a638f1b5af9, type: 2}
+  - {fileID: 2100000, guid: fca4bb98e9dc6064b8010564dc0e1c94, type: 2}
+  - {fileID: 2100000, guid: ccffab76210a34d4c9fe8343a7f69cdf, type: 2}
+  - {fileID: 2100000, guid: acb447d2367325c418f7b389fc15d6fa, type: 2}
+  - {fileID: 2100000, guid: 602e3317beb4e314c8da111c72fbb0fb, type: 2}
+  - {fileID: 2100000, guid: ab349b55de5865940807a61fc6d3f46c, type: 2}
+  - {fileID: 2100000, guid: e34f583dd8869ba4b8df77385f3a3b2a, type: 2}
+  - {fileID: 2100000, guid: 9f5696b5281cf8545864ccd014605a06, type: 2}
+  - {fileID: 2100000, guid: c1e62143dbd2aee46b7a1e06739c59d7, type: 2}
+  - {fileID: 2100000, guid: a8f867a884a4da446aea5d790ca76d31, type: 2}
+  - {fileID: 2100000, guid: f6b8f5a5432715c47a71e57430419c56, type: 2}
+  - {fileID: 2100000, guid: 7bb1457602406a345a20e5c0a1355056, type: 2}
+  - {fileID: 2100000, guid: 094937e5449565047a57cc5c5ff4979d, type: 2}
+  - {fileID: 2100000, guid: ff320ee6e4834414e8fa5a502836b7fc, type: 2}
+  - {fileID: 2100000, guid: e5c7f9172a98129498dd25489ac0aba3, type: 2}
+  - {fileID: 2100000, guid: f7ef7ff0fe35a2c468ee513af6e1b1d3, type: 2}
+  - {fileID: 2100000, guid: 4dbf4012e5715a241bbfb0df6bec6136, type: 2}
+  - {fileID: 2100000, guid: 343563bfd4468254db21b6d320c801d0, type: 2}
+  - {fileID: 2100000, guid: d50830146b7efe14199575bdc2f2edec, type: 2}
+  - {fileID: 2100000, guid: 3a2c468ab3d1dc04ea930df690c81758, type: 2}
   imagenesJuego: []
 --- !u!23 &831417574
 MeshRenderer:

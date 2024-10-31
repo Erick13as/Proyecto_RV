@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public PantallaManager pantallaManager;
-    public string[] tiposQuesadilla = { "quesadilla_frijoles", "quesadilla_frijoles_queso", "quesadilla_pollo", "quesadilla_pollo_frijoles", "quesadilla_pollo_queso", "quesadilla_queso" };
+    public string[] tiposQuesadilla = { "quesadilla_completa", "quesadilla_frijoles_queso", "quesadilla_frijoles", "quesadilla_pollo_frijoles", "quesadilla_pollo_queso", "quesadilla_pollo", "quesadilla_queso" };
     private List<string> pedidoActual = new List<string>();
     private int pedidoCompleto = 0;
     private bool juegoEnCurso = true;
@@ -55,6 +55,9 @@ public class GameManager : MonoBehaviour
         if (pedidoCompleto < pedidoActual.Count)
         {
             Debug.Log("Quesadilla completada: " + pedidoActual[pedidoCompleto]);
+
+            // Mostrar la imagen correspondiente a la quesadilla actual en PantallaManager
+            pantallaManager.MostrarTipoQuesadilla(pedidoActual[pedidoCompleto]);
             pedidoCompleto++;
 
             if (pedidoCompleto < pedidoActual.Count)

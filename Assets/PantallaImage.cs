@@ -8,13 +8,24 @@ public class PantallaManager : MonoBehaviour
     public Material[] imagenesTutorial;
     public Material[] imagenesJuego;
 
-    private int currentIndex = 0;
     private bool esTutorial = true;
+
+    // Inicializar el diccionario con índices para cada tipo de quesadilla
+    private Dictionary<string, int> imagenesQuesadillas = new Dictionary<string, int>
+    {
+        // el indice 0 es para el Material "Base" - "Ha llegodo un cliente..."
+        { "quesadilla_completa", 1 },
+        { "quesadilla_frijoles_queso", 2 },
+        { "quesadilla_frijoles", 3 },
+        { "quesadilla_pollo_frijoles", 4 },
+        { "quesadilla_pollo_queso", 5 },
+        { "quesadilla_pollo", 6 },
+        { "quesadilla_queso", 7 }
+    };
 
     public void SetModoJuego()
     {
         esTutorial = false;
-        currentIndex = 0;
     }
 
     public void DisplaySpecificImage(int index)
@@ -34,27 +45,14 @@ public class PantallaManager : MonoBehaviour
     // Muestra la imagen correspondiente al tipo de quesadilla actual
     public void MostrarTipoQuesadilla(string tipoQuesadilla)
     {
-        int index = ObtenerIndiceDeQuesadilla(tipoQuesadilla);
-        if (index != -1)
+        if (imagenesQuesadillas.TryGetValue(tipoQuesadilla, out int index))
         {
             DisplaySpecificImage(index);
             Debug.Log("Mostrando imagen para tipo de quesadilla: " + tipoQuesadilla);
         }
-    }
-
-    // Retorna el índice específico de la imagen en el array de juego
-    private int ObtenerIndiceDeQuesadilla(string tipoQuesadilla)
-    {
-        // Asumiendo que las imágenes están en el mismo orden que `tiposQuesadilla` en GameManager
-        switch (tipoQuesadilla)
+        else
         {
-            case "quesadilla_frijoles": return 7;
-            case "quesadilla_frijoles_queso": return 8;
-            case "quesadilla_pollo": return 9;
-            case "quesadilla_pollo_frijoles": return 10;
-            case "quesadilla_pollo_queso": return 11;
-            case "quesadilla_queso": return 12;
-            default: return -1;
+            Debug.LogWarning("Tipo de quesadilla no encontrado en el diccionario: " + tipoQuesadilla);
         }
     }
 }
