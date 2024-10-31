@@ -3,7 +3,22 @@ guid: 068e7af866207394baa2a009fba4da21
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fridge plastic transp.001
+    second: {fileID: 2100000, guid: a5279c4b033538d49b5f9128bea32b29, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ice cream
+    second: {fileID: 2100000, guid: 699b30a66779a15448ca318559dd5b62, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: StainlessSteel.001
+    second: {fileID: 2100000, guid: a0ded44ef2f6ce043ae1f640faeaa6a3, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

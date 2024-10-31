@@ -3,7 +3,52 @@ guid: aaa4b32371fd84b4e86bb1b4816cafb9
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cheese
+    second: {fileID: 2100000, guid: 1fcd1f34f99ca834ea272f18e9a86b78, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cheese.032
+    second: {fileID: 2100000, guid: b1ee07f66e0a3d040b750ee77182469f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cheese.033
+    second: {fileID: 2100000, guid: 81df3339aa150f1498398375600beb45, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cheese.034
+    second: {fileID: 2100000, guid: 06982a26f327f8c4eb3bbf35b29aec4e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cheese.035
+    second: {fileID: 2100000, guid: 7b508bac5ed91734abd3f41781d3496a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cheese.036
+    second: {fileID: 2100000, guid: 7037aa968dffebf439177d227afdd519, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cheese.037
+    second: {fileID: 2100000, guid: f19949e619b3b3146a139374c076db52, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cheese.038
+    second: {fileID: 2100000, guid: b18ae924f803bd24091398e6b27c2820, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fridge plastic transp.001
+    second: {fileID: 2100000, guid: a7b47c23accaf59479f358b345282d08, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
