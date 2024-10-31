@@ -310,7 +310,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c31c5852cc3e41345ae466b827446d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quesadillaMonitor: {fileID: 0}
+  originalPosition: {x: 0, y: 0, z: 0}
+  isCollidingWithQuesadilla: 0
+  quesadillaMonitor: {fileID: 1034697576}
 --- !u!114 &3445571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2106,8 +2108,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5d09039a0621c0448ab4097626c2027, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pantallaManager: {fileID: 831417573}
+  pantallaManager: {fileID: 0}
   quesadillaMonitor: {fileID: 1034697576}
+  currentStep: 0
+  currentImageIndex: 0
+  imagesPerStep: 0300000001000000010000000300000003000000030000000300000001000000030000000200000003000000
+  isDisplayingStepImages: 0
 --- !u!1001 &372795116
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2162,7 +2168,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2491,7 +2497,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c31c5852cc3e41345ae466b827446d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quesadillaMonitor: {fileID: 0}
+  originalPosition: {x: 0, y: 0, z: 0}
+  isCollidingWithQuesadilla: 0
+  quesadillaMonitor: {fileID: 1034697576}
 --- !u!114 &416829968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2847,7 +2855,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8877177980677234388, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_EnableFarCasting
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2984,11 +2992,10 @@ GameObject:
   - component: {fileID: 457372202}
   - component: {fileID: 457372200}
   - component: {fileID: 457372204}
-  - component: {fileID: 457372205}
   - component: {fileID: 457372206}
   m_Layer: 0
   m_Name: Drop Zone Pan
-  m_TagString: Untagged
+  m_TagString: Sarten
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3126,29 +3133,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.005
   m_Center: {x: -0.000000007445926, y: 0.0000000037589474, z: 0.00008544241}
---- !u!114 &457372205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 457372198}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6503bef61f44fb34a8b78819b0b049c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  materialTimePairs:
-  - material: {fileID: 2100000, guid: 716d594615331fe4c9402590a1e4abfd, type: 2}
-    duration: 5
-  - material: {fileID: 2100000, guid: ee2f737c6873a014db55a9622cc8ae15, type: 2}
-    duration: 5
-  - material: {fileID: 2100000, guid: 26de636aa7b1e454285d873c0aeb03f1, type: 2}
-    duration: 10
-  - material: {fileID: 2100000, guid: 64ee468c31b9af1438284831522a1e1a, type: 2}
-    duration: 5
-  initialDelay: 2
-  quesadillaMonitor: {fileID: 0}
 --- !u!114 &457372206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3769,7 +3753,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41f37dc749ee91d428fedb0368492229, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pantallaManager: {fileID: 831417573}
+  pantallaManager: {fileID: 0}
   tiposQuesadilla:
   - quesadilla_completa
   - quesadilla_frijoles_queso
@@ -3778,6 +3762,9 @@ MonoBehaviour:
   - quesadilla_pollo_queso
   - quesadilla_pollo
   - quesadilla_queso
+  pedidoActual: []
+  pedidoCompleto: 0
+  juegoEnCurso: 0
 --- !u!4 &541109641
 Transform:
   m_ObjectHideFlags: 0
@@ -4355,7 +4342,8 @@ MonoBehaviour:
   modeloConMaterial: {fileID: 457142930}
   tagParaRecoger: Pollo
   tagParaSoltar: Quesadilla
-  quesadillaMonitor: {fileID: 0}
+  tieneMaterial: 0
+  quesadillaMonitor: {fileID: 1034697576}
 --- !u!114 &619462488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4923,7 +4911,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c31c5852cc3e41345ae466b827446d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quesadillaMonitor: {fileID: 0}
+  originalPosition: {x: 0, y: 0, z: 0}
+  isCollidingWithQuesadilla: 0
+  quesadillaMonitor: {fileID: 1034697576}
 --- !u!114 &704970127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5506,154 +5496,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 49b3be145e9020f43a910438cf140d39, type: 3}
   m_PrefabInstance: {fileID: 2122753277}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &831417572
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 831417577}
-  - component: {fileID: 831417576}
-  - component: {fileID: 831417574}
-  - component: {fileID: 831417575}
-  - component: {fileID: 831417573}
-  m_Layer: 0
-  m_Name: Pantalla
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &831417573
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 831417572}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0233a4663f62ff64a81a5bbd0e6248a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pantallaRenderer: {fileID: 831417574}
-  imagenesTutorial:
-  - {fileID: 2100000, guid: f5b9b73793512404d9f1d65625bc8127, type: 2}
-  - {fileID: 2100000, guid: b5ef334aafee00b45bd0aab2219dc353, type: 2}
-  - {fileID: 2100000, guid: 03ac11447deff214084468925e67f5e0, type: 2}
-  - {fileID: 2100000, guid: e3574f5f9972a394ba668a638f1b5af9, type: 2}
-  - {fileID: 2100000, guid: fca4bb98e9dc6064b8010564dc0e1c94, type: 2}
-  - {fileID: 2100000, guid: ccffab76210a34d4c9fe8343a7f69cdf, type: 2}
-  - {fileID: 2100000, guid: acb447d2367325c418f7b389fc15d6fa, type: 2}
-  - {fileID: 2100000, guid: 602e3317beb4e314c8da111c72fbb0fb, type: 2}
-  - {fileID: 2100000, guid: ab349b55de5865940807a61fc6d3f46c, type: 2}
-  - {fileID: 2100000, guid: e34f583dd8869ba4b8df77385f3a3b2a, type: 2}
-  - {fileID: 2100000, guid: 9f5696b5281cf8545864ccd014605a06, type: 2}
-  - {fileID: 2100000, guid: c1e62143dbd2aee46b7a1e06739c59d7, type: 2}
-  - {fileID: 2100000, guid: a8f867a884a4da446aea5d790ca76d31, type: 2}
-  - {fileID: 2100000, guid: f6b8f5a5432715c47a71e57430419c56, type: 2}
-  - {fileID: 2100000, guid: 7bb1457602406a345a20e5c0a1355056, type: 2}
-  - {fileID: 2100000, guid: 094937e5449565047a57cc5c5ff4979d, type: 2}
-  - {fileID: 2100000, guid: ff320ee6e4834414e8fa5a502836b7fc, type: 2}
-  - {fileID: 2100000, guid: e5c7f9172a98129498dd25489ac0aba3, type: 2}
-  - {fileID: 2100000, guid: f7ef7ff0fe35a2c468ee513af6e1b1d3, type: 2}
-  - {fileID: 2100000, guid: 4dbf4012e5715a241bbfb0df6bec6136, type: 2}
-  - {fileID: 2100000, guid: 343563bfd4468254db21b6d320c801d0, type: 2}
-  - {fileID: 2100000, guid: d50830146b7efe14199575bdc2f2edec, type: 2}
-  - {fileID: 2100000, guid: 3a2c468ab3d1dc04ea930df690c81758, type: 2}
-  imagenesJuego: []
---- !u!23 &831417574
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 831417572}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 5f2dc43aa6286f446ac303a690550fcd, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &831417575
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 831417572}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!33 &831417576
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 831417572}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!224 &831417577
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 831417572}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -2.979}
-  m_LocalScale: {x: 1.6614, y: 0.009999999, z: 0.98734}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 829427255}
-  m_LocalEulerAnglesHint: {x: -90, y: 360, z: -360}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.1199999, y: 1.1700001}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &841397785 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5721629163606514349, guid: 49b3be145e9020f43a910438cf140d39, type: 3}
@@ -6181,6 +6023,12 @@ MonoBehaviour:
   gameManager: {fileID: 541109640}
   tutorialManager: {fileID: 370536374}
   esTutorial: 1
+  tortillaAgregada: 0
+  frijolAgregado: 0
+  quesoAgregado: 0
+  carneAgregada: 0
+  quesadillaCerrada: 0
+  quesadillaCocinada: 0
 --- !u!4 &1034697577
 Transform:
   m_ObjectHideFlags: 0
@@ -6317,7 +6165,6 @@ GameObject:
   - component: {fileID: 1063493729}
   - component: {fileID: 1063493728}
   - component: {fileID: 1063493727}
-  - component: {fileID: 1063493731}
   - component: {fileID: 1063493732}
   m_Layer: 0
   m_Name: Quesadilla
@@ -6544,35 +6391,6 @@ Transform:
   - {fileID: 1983624809}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1063493731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1063493726}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12d2bf6cb107e77458da3683d86fb39d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  quesadillaMonitor: {fileID: 0}
-  quesadillaBase: {fileID: 1750733993}
-  quesadillaQueso: {fileID: 1868404895}
-  quesadillaPollo: {fileID: 1325190389}
-  quesadillaFrijoles: {fileID: 1153208171}
-  quesadillaPolloQueso: {fileID: 102599295}
-  quesadillaFrijolesQueso: {fileID: 504052218}
-  quesadillaPolloFrijoles: {fileID: 631810758}
-  quesadillaCompleta: {fileID: 1339061437}
-  tortillaDoblada: {fileID: 2116910399}
-  quesadillaQuesoDoblada: {fileID: 660483638}
-  quesadillaPolloDoblada: {fileID: 726991355}
-  quesadillaFrijolesDoblada: {fileID: 100303389}
-  quesadillaPolloQuesoDoblada: {fileID: 1552499971}
-  quesadillaFrijolesQuesoDoblada: {fileID: 1450744575}
-  quesadillaPolloFrijolesDoblada: {fileID: 437657628}
-  quesadillaCompletaDoblada: {fileID: 1983624807}
 --- !u!114 &1063493732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7237,7 +7055,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c31c5852cc3e41345ae466b827446d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quesadillaMonitor: {fileID: 0}
+  originalPosition: {x: 0, y: 0, z: 0}
+  isCollidingWithQuesadilla: 0
+  quesadillaMonitor: {fileID: 1034697576}
 --- !u!114 &1153277299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8059,7 +7879,8 @@ MonoBehaviour:
   modeloConMaterial: {fileID: 175143287}
   tagParaRecoger: Frijoles
   tagParaSoltar: Quesadilla
-  quesadillaMonitor: {fileID: 0}
+  tieneMaterial: 0
+  quesadillaMonitor: {fileID: 1034697576}
 --- !u!65 &1303384732
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9266,7 +9087,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5a80337923c830f41830affcddab62b5, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5a80337923c830f41830affcddab62b5, type: 3}
       propertyPath: m_TagString
@@ -9681,6 +9502,146 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1868404897}
   m_SourcePrefab: {fileID: 100100000, guid: 69525f0c4f8ef97488ec60549682de5b, type: 3}
+--- !u!1 &1499642608
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1499642613}
+  - component: {fileID: 1499642612}
+  - component: {fileID: 1499642611}
+  - component: {fileID: 1499642610}
+  - component: {fileID: 1499642609}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1499642609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499642608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68eaed135173b2d448bb61c94d65b433, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  instruccionInicial:
+    material: {fileID: 2100000, guid: f5b9b73793512404d9f1d65625bc8127, type: 2}
+    descripcion: 
+  instruccionAgregarFrijoles:
+    material: {fileID: 2100000, guid: acb447d2367325c418f7b389fc15d6fa, type: 2}
+    descripcion: 
+  instruccionAgregarQueso:
+    material: {fileID: 2100000, guid: e34f583dd8869ba4b8df77385f3a3b2a, type: 2}
+    descripcion: 
+  instruccionAgregarPollo:
+    material: {fileID: 2100000, guid: a8f867a884a4da446aea5d790ca76d31, type: 2}
+    descripcion: 
+  instruccionDoblar:
+    material: {fileID: 2100000, guid: 7bb1457602406a345a20e5c0a1355056, type: 2}
+    descripcion: 
+  instruccionColocarEnPlato:
+    material: {fileID: 2100000, guid: d50830146b7efe14199575bdc2f2edec, type: 2}
+    descripcion: 
+  quesadillaCompleta:
+    material: {fileID: 2100000, guid: 3a2c468ab3d1dc04ea930df690c81758, type: 2}
+    descripcion: 
+  quesadillaTransformer: {fileID: 1063493732}
+--- !u!65 &1499642610
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499642608}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1499642611
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499642608}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 5f2dc43aa6286f446ac303a690550fcd, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1499642612
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499642608}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1499642613
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499642608}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.236, y: 1.321, z: -3.8}
+  m_LocalScale: {x: 1.5, y: 1, z: 0.01}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1508282682
 GameObject:
   m_ObjectHideFlags: 0
@@ -12498,7 +12459,7 @@ PrefabInstance:
       objectReference: {fileID: 4874126678125670354, guid: 8caca0a860cc7484aac8f464c6d5962b, type: 3}
     - target: {fileID: 3202839223534661109, guid: 49b3be145e9020f43a910438cf140d39, type: 3}
       propertyPath: m_TagString
-      value: Plato
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 3441818840068035881, guid: 49b3be145e9020f43a910438cf140d39, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12695,9 +12656,6 @@ PrefabInstance:
       addedObject: {fileID: 1034697577}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 49b3be145e9020f43a910438cf140d39, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 831417577}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 49b3be145e9020f43a910438cf140d39, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 370536373}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 817249614396239257, guid: 49b3be145e9020f43a910438cf140d39, type: 3}
@@ -12865,4 +12823,5 @@ SceneRoots:
   - {fileID: 2079318300}
   - {fileID: 1303384735}
   - {fileID: 619462486}
+  - {fileID: 1499642613}
   - {fileID: 1063493730}
