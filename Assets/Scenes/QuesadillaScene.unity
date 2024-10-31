@@ -305,12 +305,24 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3445556}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c31c5852cc3e41345ae466b827446d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   quesadillaMonitor: {fileID: 0}
+--- !u!114 &3445571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3445556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59ef96730045e2648976cc1b2533e691, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &23539995
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2659,12 +2671,24 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 416829953}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c31c5852cc3e41345ae466b827446d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   quesadillaMonitor: {fileID: 0}
+--- !u!114 &416829968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416829953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59ef96730045e2648976cc1b2533e691, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &419034229
 GameObject:
   m_ObjectHideFlags: 0
@@ -3146,6 +3170,7 @@ GameObject:
   - component: {fileID: 457372200}
   - component: {fileID: 457372204}
   - component: {fileID: 457372205}
+  - component: {fileID: 457372206}
   m_Layer: 0
   m_Name: Drop Zone Pan
   m_TagString: Untagged
@@ -3293,7 +3318,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 457372198}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6503bef61f44fb34a8b78819b0b049c2, type: 3}
   m_Name: 
@@ -3309,6 +3334,28 @@ MonoBehaviour:
     duration: 5
   initialDelay: 2
   quesadillaMonitor: {fileID: 0}
+--- !u!114 &457372206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457372198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b942860857413a45b5ada7b77bb50d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialTimePairs:
+  - material: {fileID: 2100000, guid: 716d594615331fe4c9402590a1e4abfd, type: 2}
+    duration: 5
+  - material: {fileID: 2100000, guid: ee2f737c6873a014db55a9622cc8ae15, type: 2}
+    duration: 5
+  - material: {fileID: 2100000, guid: 26de636aa7b1e454285d873c0aeb03f1, type: 2}
+    duration: 10
+  - material: {fileID: 2100000, guid: 64ee468c31b9af1438284831522a1e1a, type: 2}
+    duration: 5
+  initialDelay: 2
 --- !u!1001 &458477710
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3568,6 +3615,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3831613599716966935, guid: fcdc1a98a8b8d6645b044814d77f5a01, type: 3}
       insertIndex: -1
       addedObject: {fileID: 704970125}
+    - targetCorrespondingSourceObject: {fileID: 3831613599716966935, guid: fcdc1a98a8b8d6645b044814d77f5a01, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 704970127}
     - targetCorrespondingSourceObject: {fileID: 2480632355756639407, guid: fcdc1a98a8b8d6645b044814d77f5a01, type: 3}
       insertIndex: -1
       addedObject: {fileID: 862477598}
@@ -3592,6 +3642,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4116620045196280246, guid: fcdc1a98a8b8d6645b044814d77f5a01, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3445569}
+    - targetCorrespondingSourceObject: {fileID: 4116620045196280246, guid: fcdc1a98a8b8d6645b044814d77f5a01, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3445571}
     - targetCorrespondingSourceObject: {fileID: 1170345274853859289, guid: fcdc1a98a8b8d6645b044814d77f5a01, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1153277289}
@@ -3604,6 +3657,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1170345274853859289, guid: fcdc1a98a8b8d6645b044814d77f5a01, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1153277297}
+    - targetCorrespondingSourceObject: {fileID: 1170345274853859289, guid: fcdc1a98a8b8d6645b044814d77f5a01, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1153277299}
     - targetCorrespondingSourceObject: {fileID: 8368644662093712315, guid: fcdc1a98a8b8d6645b044814d77f5a01, type: 3}
       insertIndex: -1
       addedObject: {fileID: 416829958}
@@ -3616,6 +3672,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8368644662093712315, guid: fcdc1a98a8b8d6645b044814d77f5a01, type: 3}
       insertIndex: -1
       addedObject: {fileID: 416829966}
+    - targetCorrespondingSourceObject: {fileID: 8368644662093712315, guid: fcdc1a98a8b8d6645b044814d77f5a01, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 416829968}
   m_SourcePrefab: {fileID: 100100000, guid: fcdc1a98a8b8d6645b044814d77f5a01, type: 3}
 --- !u!1 &502593858
 GameObject:
@@ -4266,6 +4325,7 @@ GameObject:
   - component: {fileID: 619462484}
   - component: {fileID: 619462483}
   - component: {fileID: 619462487}
+  - component: {fileID: 619462488}
   m_Layer: 0
   m_Name: CucharaPollo
   m_TagString: CucharaPollo
@@ -4468,7 +4528,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 619462481}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca2100c463979ea45978080cb432b7a8, type: 3}
   m_Name: 
@@ -4478,6 +4538,22 @@ MonoBehaviour:
   tagParaRecoger: Pollo
   tagParaSoltar: Quesadilla
   quesadillaMonitor: {fileID: 0}
+--- !u!114 &619462488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619462481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35cb442bffc4b734db04b3295eccb437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modeloInicial: {fileID: 1487162555}
+  modeloConMaterial: {fileID: 457142930}
+  tagParaRecoger: Pollo
+  tagParaSoltar: Quesadilla
 --- !u!1 &624636195
 GameObject:
   m_ObjectHideFlags: 0
@@ -5024,12 +5100,24 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 704970112}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c31c5852cc3e41345ae466b827446d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   quesadillaMonitor: {fileID: 0}
+--- !u!114 &704970127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 704970112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59ef96730045e2648976cc1b2533e691, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &710210136
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6727,6 +6815,7 @@ GameObject:
   - component: {fileID: 1063493728}
   - component: {fileID: 1063493727}
   - component: {fileID: 1063493731}
+  - component: {fileID: 1063493732}
   m_Layer: 0
   m_Name: Quesadilla
   m_TagString: Quesadilla
@@ -6959,12 +7048,40 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1063493726}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 12d2bf6cb107e77458da3683d86fb39d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   quesadillaMonitor: {fileID: 0}
+  quesadillaBase: {fileID: 1750733993}
+  quesadillaQueso: {fileID: 1868404895}
+  quesadillaPollo: {fileID: 1325190389}
+  quesadillaFrijoles: {fileID: 1153208171}
+  quesadillaPolloQueso: {fileID: 102599295}
+  quesadillaFrijolesQueso: {fileID: 504052218}
+  quesadillaPolloFrijoles: {fileID: 631810758}
+  quesadillaCompleta: {fileID: 1339061437}
+  tortillaDoblada: {fileID: 2116910399}
+  quesadillaQuesoDoblada: {fileID: 660483638}
+  quesadillaPolloDoblada: {fileID: 726991355}
+  quesadillaFrijolesDoblada: {fileID: 100303389}
+  quesadillaPolloQuesoDoblada: {fileID: 1552499971}
+  quesadillaFrijolesQuesoDoblada: {fileID: 1450744575}
+  quesadillaPolloFrijolesDoblada: {fileID: 437657628}
+  quesadillaCompletaDoblada: {fileID: 1983624807}
+--- !u!114 &1063493732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1063493726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27e70ae5145aa7d40acad8d515d40897, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   quesadillaBase: {fileID: 1750733993}
   quesadillaQueso: {fileID: 1868404895}
   quesadillaPollo: {fileID: 1325190389}
@@ -7613,12 +7730,24 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1153277284}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c31c5852cc3e41345ae466b827446d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   quesadillaMonitor: {fileID: 0}
+--- !u!114 &1153277299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153277284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59ef96730045e2648976cc1b2533e691, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1190274609
 GameObject:
   m_ObjectHideFlags: 0
@@ -8404,6 +8533,7 @@ GameObject:
   - component: {fileID: 1303384733}
   - component: {fileID: 1303384732}
   - component: {fileID: 1303384731}
+  - component: {fileID: 1303384736}
   m_Layer: 0
   m_Name: CucharaFrijoles
   m_TagString: CucharaFrijoles
@@ -8418,7 +8548,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1303384730}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca2100c463979ea45978080cb432b7a8, type: 3}
   m_Name: 
@@ -8616,6 +8746,22 @@ Transform:
   - {fileID: 1989144974}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -89.499, y: -361.1, z: 0}
+--- !u!114 &1303384736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1303384730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35cb442bffc4b734db04b3295eccb437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modeloInicial: {fileID: 1762647346}
+  modeloConMaterial: {fileID: 175143287}
+  tagParaRecoger: Frijoles
+  tagParaSoltar: Quesadilla
 --- !u!1 &1306592818
 GameObject:
   m_ObjectHideFlags: 0
