@@ -144,7 +144,7 @@ public class QuesadillaTransformer2 : MonoBehaviour
         }
 
         // Obtener el script de la cuchara para otros ingredientes
-        CambiarModelo scriptCuchara = other.GetComponent<CambiarModelo>();
+        CambiarModelo2 scriptCuchara = other.GetComponent<CambiarModelo2>();
 
         if (scriptCuchara != null)
         {
@@ -207,6 +207,13 @@ public class QuesadillaTransformer2 : MonoBehaviour
     private void ActualizarModelo()
     {
         DesactivarTodosLosModelos();
+
+        // Imprimir en el log los datos actuales para elegir el modelo
+        Debug.Log("Actualizar Modelo - Datos:");
+        Debug.Log("tieneQueso: " + tieneQueso);
+        Debug.Log("tienePollo: " + tienePollo);
+        Debug.Log("tieneFrijoles: " + tieneFrijoles);
+        Debug.Log("estaDoblada: " + estaDoblada);
 
         // Seleccionar el modelo correspondiente según ingredientes y estado doblado
         GameObject modeloAActivar = null;
